@@ -1,12 +1,15 @@
 ---
 import Star from "../components/Star";
 import fetchApi from "../lib/strapi";
-import type Article from '../interfaces/article';
-import Cursus from "../components/Cursus";
+import type Article from "../interfaces/article";
+import Timeline from "../components/TImeline";
+import Cursus from "../components/Cursus.astro";
+import { getRuntime } from "@astrojs/cloudflare/runtime";
+getRuntime(Astro.request);
 
 const articles = await fetchApi<Article[]>({
-  endpoint: 'articles', // the content type to fetch
-  wrappedByKey: 'data', // the key to unwrap the response
+  endpoint: "articles", // the content type to fetch
+  wrappedByKey: "data", // the key to unwrap the response
 });
 ---
 
@@ -19,11 +22,18 @@ const articles = await fetchApi<Article[]>({
     <title>Matthieu Dejean</title>
   </head>
   <body>
-    <Cursus client:load />
+    <Cursus />
+    <Timeline client:visible />
+    <!-- <Cursus />
+    <Cursus /> -->
     <!-- <Star client:load /> -->
     <script
       is:inline
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+    ></script>
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
     ></script>
   </body>
 </html>
