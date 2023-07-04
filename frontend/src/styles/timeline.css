@@ -1,5 +1,4 @@
 .layout {
-  height: 1500px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -18,8 +17,7 @@
 .progress-bar {
   z-index: -1;
   width: 3px;
-  height: 50vh;
-  background-color: #03ff40;
+  /* height: 50vh; */
   position: fixed;
   top: 0;
   bottom: 50vh;
@@ -28,8 +26,9 @@
 .overlay-top {
   z-index: 1;
   width: 100%;
-  height: 6rem;
-  background-image: linear-gradient(#03ff40, rgba(255, 255, 255, 0));
+  /* height: 6rem; */
+  /* background-color: #03ff40; */
+  /* background-image: linear-gradient(#03ff40, rgba(255, 255, 255, 0)); */
   position: absolute;
   top: 0%;
   bottom: auto;
@@ -40,8 +39,9 @@
 .overlay-bottom {
   z-index: 1;
   width: 100%;
-  height: 6rem;
-  background-image: linear-gradient(rgba(255, 255, 255, 0), #040404);
+  /* height: 6rem; */
+  /* background-color: #03ff40; */
+  /* background-image: linear-gradient(rgba(255, 255, 255, 0), #040404); */
   position: absolute;
   top: auto;
   bottom: 0%;
@@ -61,12 +61,10 @@
 }
 
 .data-left {
-  color: rgb(245, 245, 247);
-  will-change: opacity;
-  opacity: 0.25;
+  color: #f5f5f7;
 }
 
-.data-text {
+.data-text-left {
   text-align: right;
   font-size: 3rem;
 }
@@ -82,11 +80,16 @@
   height: 1rem;
   background-color: #5d5d5d;
   border-radius: 100%;
-  position: -webkit-sticky;
-  position: sticky;
   top: 50vh;
   box-shadow: 0 0 0 8px #040404;
 }
 
 .data-right {
+  color: #4f4f4f;
+}
+
+.data-text-right {
+  text-transform: none;
+  font-size: 1.3rem;
+  line-height: 1.35;
 }
