@@ -5,6 +5,8 @@ import type Article from "../interfaces/article";
 import Timeline from "../components/TImeline";
 import Cursus from "../components/Cursus.astro";
 import { getRuntime } from "@astrojs/cloudflare/runtime";
+import ProjectLayout from "../layouts/projectLayout";
+
 getRuntime(Astro.request);
 
 const articles = await fetchApi<Article[]>({
@@ -22,6 +24,7 @@ const articles = await fetchApi<Article[]>({
     <title>Matthieu Dejean</title>
   </head>
   <body>
+    <ProjectLayout client:load />
     <Cursus />
     <Timeline client:visible />
     <div class="mt-96 mb-96 h-96 border-solid border-2 border-white"></div>
