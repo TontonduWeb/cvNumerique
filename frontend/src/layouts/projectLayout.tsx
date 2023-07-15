@@ -1,7 +1,7 @@
 import ImageList from "../components/ImageList";
 import ProjectList from "../components/ProjectList";
 import { ProjectProvider } from "../providers/projectContext";
-import "../styles/projectLayout.css";
+import "../styles/project.css";
 
 export default function ProjectLayout() {
   return (
@@ -11,7 +11,9 @@ export default function ProjectLayout() {
           <div class="container-list">
             <ProjectList />
           </div>
-          <ImageList />
+          <div class="container-img">
+            <ImageList />
+          </div>
         </div>
       </ProjectProvider>
     </>

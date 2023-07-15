@@ -1,19 +1,45 @@
 import { For, createSignal } from "solid-js";
 import { Project, useProject } from "../providers/projectContext";
+import "../styles/project.css";
 
 export default function ProjectList() {
-  const [pos, setPos] = createSignal({ x: 0, y: 0 });
+  const [project, { changeProject, changeCoordinates, changeIsValid }] =
+    useProject();
+  const [coordinates, setCoordinates] = createSignal({ x: 0, y: 0 });
+  const [valid, setIsValid] = createSignal({ isValid: false });
+
+  function handleMouseMove(event: { clientX: number; clientY: number }) {
+    setCoordinates({
+      x: event.clientX,
+      y: event.clientY,
+    });
+  }
+
+  function switchOn() {
+    setIsValid({
+      isValid: true,
+    });
+    changeIsValid(valid());
+  }
+
+  function switchOff() {
+    setIsValid({
+      isValid: false,
+    });
+    changeIsValid(valid());
+  }
+
   const [projects, setProjects] = createSignal([
     {
       title: "Project 1",
       description: "Project 1 description",
-      img: "/images/odg.jpg",
+      img: "/images/dog.jpg",
       url: "https://www.google.com",
     },
     {
       title: "Project 2",
       description: "Project 2 description",
-      img: "https://cdn.pixabay.com/photo/2023/07/01/18/56/dog-8100754_1280.jpg",
+      img: "https://cdn.pixabay.com/photo/2015/11/17/13/13/puppy-1047521_1280.jpg",
       url: "https://cdn.pixabay.com/photo/2016/02/18/18/37/puppy-1207816_1280.jpg",
     },
     {
@@ -29,38 +55,28 @@ export default function ProjectList() {
       url: "https://www.google.com",
     },
   ]);
-  const [project, { changeProject }] = useProject();
-
-  function handleMouseMove(event: { clientX: number; clientY: number }) {
-    setPos({
-      x: event.clientX,
-      y: event.clientY,
-    });
-    console.log(pos().x, pos().y);
-  }
 
   return (
-    <>
-      <div onMouseMove={handleMouseMove}>
-        The mouse position is {pos().x} x {pos().y}
-      </div>
-      <div>
-        <ul>
-          <For each={projects()}>
-            {(proj) => (
-              <li
-                onMouseMove={() => {
-                  changeProject(proj), handleMouseMove;
-                }}>
-                <h2>{proj.title}</h2>
-                <p>{proj.description}</p>
-                <img class="h-10 w-10" src={proj.img} alt={proj.title} />
-                <a href={proj.url}>View Project</a>
-              </li>
-            )}
-          </For>
-        </ul>
-      </div>
-    </>
+    <ul>
+      <For each={projects()}>
+        {(proj) => (
+          <li
+            onMouseMove={handleMouseMove}
+            onMouseEnter={switchOn}
+            onMouseLeave={switchOff}>
+            <div
+              onMouseMove={() => {
+                changeCoordinates(coordinates());
+              }}
+              onMouseEnter={() => {
+                changeProject(proj);
+              }}>
+              <h2>{proj.title}</h2>
+              <p>{proj.description}</p>
+            </div>
+          </li>
+        )}
+      </For>
+    </ul>
   );
 }
