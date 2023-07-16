@@ -12,10 +12,10 @@ export default function ImageList() {
           style={{
             left: 0,
             top: 0,
-            position: "absolute",
+            position: "relative",
             transition: "transform 1s ease",
-            transform: `translate(${coordinates.x + 250}px, ${
-              coordinates.y - 125
+            transform: `translate(${coordinates.x - 400}px, ${
+              coordinates.y - 200
             }px)`,
           }}
           src={project.img}

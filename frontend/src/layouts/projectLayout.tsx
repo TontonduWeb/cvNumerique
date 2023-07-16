@@ -7,7 +7,7 @@ export default function ProjectLayout() {
   return (
     <>
       <ProjectProvider>
-        <div class="container">
+        <div class="main-container">
           <div class="container-list">
             <ProjectList />
           </div>

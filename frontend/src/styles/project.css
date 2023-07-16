@@ -1,5 +1,6 @@
 /* Layout */
-.container {
+.main-container {
+  height: 90vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 16px;
@@ -13,14 +14,30 @@
 
 /* ProjectList */
 
-ul {
-  border-top: solid 1px #fff;
+.project-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-li {
+a {
+  height: 100%;
   list-style-type: none;
-  padding: 8px;
+  border-top: solid 1px #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+a:last-of-type {
   border-bottom: solid 1px #fff;
+}
+
+.list:hover * {
+  background-color: #fff;
+  color: #333;
 }
 
 /* ImageList */

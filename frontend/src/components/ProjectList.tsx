@@ -54,28 +54,23 @@ export default function ProjectList() {
   ]);
 
   return (
-    <ul>
+    <div class="project-container" onMouseMove={handleMouseMove}>
       <For each={projects()}>
         {(proj) => (
-          <a href={proj.url}>
-            <li
-              onMouseMove={handleMouseMove}
-              onMouseEnter={switchIsValid}
-              onMouseLeave={switchIsValid}>
-              <div
-                onMouseMove={() => {
-                  changeCoordinates(coordinates());
-                }}
-                onMouseEnter={() => {
-                  changeProject(proj);
-                }}>
-                <h2>{proj.title}</h2>
-                <p>{proj.description}</p>
-              </div>
-            </li>
+          <a
+            onMouseMove={() => {
+              changeCoordinates(coordinates());
+            }}
+            onMouseOver={() => changeProject(proj)}
+            onMouseEnter={switchIsValid}
+            onMouseLeave={switchIsValid}
+            href={proj.url}
+            class="list">
+            <h2>{proj.title}</h2>
+            <p>{proj.description}</p>
           </a>
         )}
       </For>
-    </ul>
+    </div>
   );
 }
