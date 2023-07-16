@@ -6,6 +6,7 @@ export type Project = {
   readonly description: string;
   readonly img: string;
   readonly url: string;
+  isValid?: boolean;
 };
 
 export type Coordinates = {
@@ -38,6 +39,7 @@ const defaultState = {
     description: "Project 1 description",
     img: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1675&q=80",
     url: "https://www.google.com",
+    isValid: false,
   },
   coordinates: { x: 0, y: 0 },
   valid: { isValid: false },

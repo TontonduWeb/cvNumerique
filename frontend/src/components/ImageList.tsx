@@ -6,19 +6,21 @@ export default function ImageList() {
 
   return (
     <div>
-      {valid.isValid ? (
+      {valid.isValid && (
         <img
-          class="h-56 w-auto"
+          class="fadein h-56 w-auto"
           style={{
-            transform: `translate(${coordinates.x * 0.1}px, ${
-              coordinates.y * 0.1
+            left: 0,
+            top: 0,
+            position: "absolute",
+            transition: "transform 1s ease",
+            transform: `translate(${coordinates.x + 250}px, ${
+              coordinates.y - 125
             }px)`,
           }}
           src={project.img}
           alt={project.title}
         />
-      ) : (
-        <p></p>
       )}
     </div>
   );
