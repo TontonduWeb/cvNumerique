@@ -6,6 +6,8 @@ import Timeline from "../components/TImeline";
 import Cursus from "../components/Cursus.astro";
 import { getRuntime } from "@astrojs/cloudflare/runtime";
 import ProjectLayout from "../layouts/projectLayout";
+import Todo from "../components/Todo";
+import ChiFuMi from "../components/ChiFuMi";
 
 getRuntime(Astro.request);
 
@@ -24,6 +26,8 @@ const articles = await fetchApi<Article[]>({
     <title>Matthieu Dejean</title>
   </head>
   <body>
+    <ChiFuMi client:load />
+    <!-- <Todo client:load /> -->
     <Cursus />
     <ProjectLayout client:load />
     <Timeline client:visible />
