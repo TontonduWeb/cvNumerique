@@ -3,6 +3,13 @@ import { createLocalStore, removeIndex } from "../providers/localStore";
 import "../styles/chifumi.css";
 
 type Partie = { playerChoice: string; computerChoice: string; result: string };
+type Level = {
+  rank: number;
+  level: string;
+  pourcent: number;
+  winParties: number;
+  maxParties: number;
+};
 
 export default function ChiFuMi() {
   const [computerChoice, setComputerChoice] = createSignal(0);
@@ -13,11 +20,33 @@ export default function ChiFuMi() {
   const [pourcent, setPourcent] = createSignal(0);
   const [isActive, setIsActive] = createSignal(false);
   const [isWinTheGame, setWinTheGame] = createSignal(false);
+  const [levelSignal, setLevelSignal] = createSignal<Level>({
+    rank: 1,
+    level: "Facile",
+    pourcent: 40,
+    winParties: 3,
+    maxParties: 10,
+  });
+
+  const levels = [
+    { rank: 1, level: "Facile", pourcent: 40, winParties: 3, maxParties: 10 },
+    { rank: 2, level: "Moyen", pourcent: 50, winParties: 4, maxParties: 10 },
+    {
+      rank: 3,
+      level: "Difficile",
+      pourcent: 60,
+      winParties: 5,
+      maxParties: 8,
+    },
+    { rank: 4, level: "Expert", pourcent: 70, winParties: 4, maxParties: 8 },
+    { rank: 5, level: "Maitre", pourcent: 80, winParties: 5, maxParties: 6 },
+  ];
 
   onMount(() => {
     setParties([]);
+    setLevelSignal(levels[0]);
   });
-  const addPlayerChoiceAndPartie = (e: SubmitEvent) => {
+  const setPlayerChoiceAndPartie = (e: SubmitEvent) => {
     e.preventDefault();
     // Create a batch to update state only once
     batch(() => {
@@ -33,12 +62,34 @@ export default function ChiFuMi() {
     });
   };
 
+  function valueToLevelNumber(value: string) {
+    switch (value) {
+      case "Facile":
+        return 0;
+      case "Moyen":
+        return 1;
+      case "Difficile":
+        return 2;
+      case "Expert":
+        return 3;
+      case "Maitre":
+        return 4;
+      default:
+        return 0;
+    }
+  }
+
+  function selectLevel(rank: number) {
+    setLevelSignal(levels[rank]);
+  }
+
   const resetParties = (e: SubmitEvent) => {
     e.preventDefault();
     // Create a batch to update state only once
     batch(() => {
       // Set a new player choice in the state
       setParties([]);
+      setIsActive(false);
     });
   };
 
@@ -111,41 +162,101 @@ export default function ChiFuMi() {
   }
 
   function getMaxParties(parties: Partie[]) {
-    let max = 10;
+    let max = levelSignal().maxParties;
     if (parties.length >= max) {
       setIsActive(true);
     }
   }
 
   function winTheGame(parties: Partie[]) {
-    let winTheGame = 0;
+    let gamesWon = 0;
     for (let i = 0; i < parties.length; i++) {
       if (parties[i].result === "Tu as gagné") {
-        winTheGame++;
+        gamesWon++;
       }
     }
-    if (winTheGame >= 5 && pourcent() === 100.0) {
+    if (
+      gamesWon >= levelSignal().winParties &&
+      pourcent() >= levelSignal().pourcent
+    ) {
       setWinTheGame(true);
+      setIsActive(true);
     }
   }
 
   return (
     <>
       <div class="global">
-        {isWinTheGame() && (
+        {isActive() && isWinTheGame() ? (
           <h2 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
             Tu as gagné le game
           </h2>
+        ) : isActive() && !isWinTheGame() ? (
+          <h2 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+            Tu as perdu le game
+          </h2>
+        ) : (
+          ""
         )}
         <div
           class="game-container"
-          classList={{ winTheGameBack: isWinTheGame() === true }}>
+          classList={{ winTheGameBack: isActive() === true }}>
           <div class="game">
             <h1>ChiFuMi</h1>
             {!isActive() ? (
               <>
-                <h2>Choisissez entre pierre, feuille et ciseaux</h2>
-                <form onSubmit={addPlayerChoiceAndPartie}>
+                <div class="level">
+                  <h3>Choisis ton niveau :</h3>
+                  <form
+                    onSubmit={(e) => {
+                      resetParties(e);
+                    }}>
+                    <input
+                      class="w-20 h-auto border-2 mx-5 my-2"
+                      type="submit"
+                      value="Facile"
+                      checked
+                      onClick={(e) => {
+                        selectLevel(valueToLevelNumber(e.currentTarget.value));
+                      }}
+                    />
+                    <input
+                      class="w-20 h-auto border-2 mx-5 my-2"
+                      type="submit"
+                      value="Moyen"
+                      onClick={(e) => {
+                        selectLevel(valueToLevelNumber(e.currentTarget.value));
+                      }}
+                    />
+                    <input
+                      class="w-20 h-auto border-2 mx-5 my-2"
+                      type="submit"
+                      value="Difficile"
+                      onClick={(e) => {
+                        selectLevel(valueToLevelNumber(e.currentTarget.value));
+                      }}
+                    />
+                    <input
+                      class="w-20 h-auto border-2 mx-5 my-2"
+                      type="submit"
+                      value="Expert"
+                      onClick={(e) => {
+                        selectLevel(valueToLevelNumber(e.currentTarget.value));
+                      }}
+                    />
+                    <input
+                      class="w-20 h-auto border-2 mx-5 my-2"
+                      type="submit"
+                      value="Maitre"
+                      onClick={(e) => {
+                        selectLevel(valueToLevelNumber(e.currentTarget.value));
+                      }}
+                    />
+                  </form>
+                </div>
+                <p>Level rank : {levelSignal().rank}</p>
+                <h4>Choisis entre pierre, feuille ou ciseaux :</h4>
+                <form onSubmit={setPlayerChoiceAndPartie}>
                   <button
                     onClick={() => {
                       random(1, 3);
@@ -200,7 +311,11 @@ export default function ChiFuMi() {
             ) : (
               <div>
                 <h3>Parties maximum atteintes ...</h3>
-                <p>Atteins les 100% de parties gagnées en 10 parties</p>
+                <p>
+                  Atteins les {levelSignal().pourcent}% de parties gagnées, avec
+                  minimum {levelSignal().winParties} parties gagnées en{" "}
+                  {levelSignal().maxParties} parties maximum
+                </p>
               </div>
             )}
           </div>
@@ -237,58 +352,55 @@ export default function ChiFuMi() {
           </div>
         </div>
 
-        <div
-          class="parties-container"
-          classList={{
-            winTheGameBack: isWinTheGame() === true,
-            noselect: isWinTheGame() === true,
-          }}>
+        <div class="parties-container">
           {parties.length > 0 && (
             <>
               <h2>Les parties :</h2>
-              <div class="pourcent">
+              <div class="grow">
+                <div class="parties">
+                  <div class="parties-list">
+                    <For each={parties}>
+                      {(partie, i) => (
+                        <div class="flex w-full">
+                          <div class="flex w-full">
+                            <p class="mr-6">n° {i() + 1}</p>
+                            <span
+                              class="grow"
+                              classList={{
+                                win: partie.result === "Tu as gagné",
+                                lost: partie.result === "Tu as perdu",
+                                equal: partie.result === "Egalité",
+                              }}>
+                              {partie.result}
+                            </span>
+                            <div class=" mr-6 w-20 flex justify-between">
+                              <span>{partie.playerChoice}</span>
+                              <span>VS</span>
+                              <span>{partie.computerChoice}</span>
+                            </div>
+                          </div>
+                          <button
+                            class="w-6 h-6 border-2 cursor-pointer"
+                            onClick={() => {
+                              setParties((p) => removeIndex(p, i()));
+                              getPourcentPartiesWin(parties);
+                              setIsActive(false);
+                              setWinTheGame(false);
+                              winTheGame(parties);
+                            }}>
+                            X
+                          </button>
+                        </div>
+                      )}
+                    </For>
+                  </div>
+                </div>
+              </div>
+              <div>
                 <p classList={{ win: isWinTheGame() === true }}>
                   Pourcentage de parties gagnées : {pourcent().toFixed(2)} %
                 </p>
               </div>
-              <div class="parties">
-                <div class="parties-list">
-                  <For each={parties}>
-                    {(partie, i) => (
-                      <div class="flex w-full">
-                        <div class="flex w-full">
-                          <p class="mr-6">n° {i() + 1}</p>
-                          <span
-                            class="grow"
-                            classList={{
-                              win: partie.result === "Tu as gagné",
-                              lost: partie.result === "Tu as perdu",
-                              equal: partie.result === "Egalité",
-                            }}>
-                            {partie.result}
-                          </span>
-                          <div class=" mr-6 w-20 flex justify-between">
-                            <span>{partie.playerChoice}</span>
-                            <span>VS</span>
-                            <span>{partie.computerChoice}</span>
-                          </div>
-                        </div>
-                        <button
-                          class="w-6 h-6 border-2 cursor-pointer"
-                          onClick={() => {
-                            setParties((p) => removeIndex(p, i()));
-                            getPourcentPartiesWin(parties);
-                            setIsActive(false);
-                            winTheGame(parties);
-                          }}>
-                          X
-                        </button>
-                      </div>
-                    )}
-                  </For>
-                </div>
-              </div>
-
               <form onSubmit={resetParties}>
                 <button class="w-auto p-1 border-2">Recommencer</button>
               </form>
