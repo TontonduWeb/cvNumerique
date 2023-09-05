@@ -2,10 +2,11 @@ p {
   opacity: 1 !important;
 }
 .global {
-  height: 70vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: row;
+  padding-top: 2rem;
 }
 
 .game-container {
@@ -21,9 +22,24 @@ p {
 .game {
   position: relative;
   height: 70%;
-  padding-top: 50px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.parties-played {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.live {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .live-result {
@@ -35,7 +51,6 @@ p {
 }
 
 .parties-container {
-  padding-top: 50px;
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -45,6 +60,8 @@ p {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
 }
 
@@ -81,6 +98,13 @@ p {
   opacity: 0.3;
 }
 
+.level {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
 #select-level {
   height: 40px;
   border: none;
@@ -95,7 +119,6 @@ p {
 }
 #select-level option {
   width: 60px;
-  /* font-size: 0.5em; */
   padding: 10px 0;
   text-align: center;
   margin-right: 20px;
@@ -111,9 +134,12 @@ p {
   background-color: #03ff40;
   color: white;
 }
-/* But the option selected is still blue */
-/* Make it ! */
-#select-level:-moz-focusring option {
-  background-color: #03ff40;
-  color: white;
+
+.rules {
+  height: 100%;
+  font-family: "VT323", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 30vh;
 }

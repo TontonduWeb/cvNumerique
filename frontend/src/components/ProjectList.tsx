@@ -1,12 +1,12 @@
 import { For, createSignal } from "solid-js";
-import { Project, useProject } from "../providers/projectContext";
+import { useProject } from "../providers/projectContext";
 import "../styles/project.css";
 
 export default function ProjectList() {
   const [project, { changeProject, changeCoordinates, changeIsValid }] =
     useProject();
   const [coordinates, setCoordinates] = createSignal({ x: 0, y: 0 });
-  const [isValid, setIsValid] = createSignal({ isValid: false });
+  const [isDisplay, setIsDisplay] = createSignal({ isValid: false });
 
   function handleMouseMove(event: { clientX: number; clientY: number }) {
     setCoordinates({
@@ -16,10 +16,10 @@ export default function ProjectList() {
   }
 
   function switchIsValid() {
-    setIsValid({
-      isValid: !isValid().isValid,
+    setIsDisplay({
+      isValid: !isDisplay().isValid,
     });
-    changeIsValid(isValid());
+    changeIsValid(isDisplay());
   }
 
   const [projects, setProjects] = createSignal([
