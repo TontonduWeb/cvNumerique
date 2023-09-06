@@ -1,0 +1,20 @@
+body {
+  background-image: linear-gradient(
+    180deg,
+    hsl(188deg 59% 15%) 0%,
+    hsl(182deg 81% 13%) 7%,
+    hsl(175deg 91% 12%) 14%,
+    hsl(166deg 82% 13%) 21%,
+    hsl(152deg 60% 14%) 29%,
+    hsl(128deg 41% 16%) 36%,
+    hsl(96deg 50% 15%) 43%,
+    hsl(74deg 74% 12%) 50%,
+    hsl(50deg 100% 10%) 57%,
+    hsl(34deg 100% 12%) 64%,
+    hsl(22deg 100% 13%) 71%,
+    hsl(1deg 73% 14%) 79%,
+    hsl(338deg 95% 12%) 86%,
+    hsl(321deg 100% 10%) 93%,
+    hsl(293deg 100% 8%) 100%
+  );
+}

@@ -3,12 +3,11 @@ import Star from "../components/Star";
 import fetchApi from "../lib/strapi";
 import type Article from "../interfaces/article";
 import MainLayout from "../layouts/mainLayout.astro";
-// import Cursus from "../components/Cursus.astro";
 import Cursus from "../components/Cursus";
 import Menu from "../components/Menu.astro";
 import Timeline from "../components/TImeline";
 import ProjectLayout from "../layouts/projectLayout";
-import TryTwice from "../components/TryTwice";
+import ChiFuMi from "../components/ChiFuMi";
 
 const articles = await fetchApi<Article[]>({
   endpoint: "articles", // the content type to fetch
@@ -18,8 +17,8 @@ const articles = await fetchApi<Article[]>({
 
 <MainLayout>
   <Menu />
-  <TryTwice client:load />
-  <Cursus client:load />
+  <Cursus client:visible />
   <ProjectLayout client:load />
   <Timeline client:visible />
+  <ChiFuMi client:visible />
 </MainLayout>

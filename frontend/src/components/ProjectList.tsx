@@ -24,31 +24,35 @@ export default function ProjectList() {
 
   const [projects, setProjects] = createSignal([
     {
-      title: "Project 1",
-      description: "Project 1 description",
-      img: "/images/dog.jpg",
-      url: "https://www.google.com",
+      title: "Site Mephisto",
+      description:
+        "Première expérience avec un produit digital, lors de la digitalisation de l'offre physique de la marque Mephisto. En tant que chargé de projet, j'ai pu participer à la création du site e-commerce, de la stratégie digitale et de la mise en place de la stratégie CRM.",
+      img: "/images/site-mephisto.png",
+      url: "https://www.chaussuremephisto.fr/fr/",
       isValid: false,
     },
     {
-      title: "Project 2",
-      description: "Project 2 description",
-      img: "https://cdn.pixabay.com/photo/2015/11/17/13/13/puppy-1047521_1280.jpg",
-      url: "https://cdn.pixabay.com/photo/2016/02/18/18/37/puppy-1207816_1280.jpg",
+      title: "Wanna Gonna",
+      description:
+        "Lors de ma première expérience en tant qu'apprentis développeur, en suivant le cursus PHP Symfony, nous avons eu la chance de participer à la conception et la réalisation d'une plateforme de mise en relation entre des bénévoles et des associations.",
+      img: "/images/wanna-gonna.png",
+      url: "https://www.wannagonna.org/",
       isValid: false,
     },
     {
-      title: "Project 3",
-      description: "Project 3 description",
-      img: "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg",
-      url: "https://www.google.com",
+      title: "Site Scub",
+      description:
+        "Lors de ma première année d'alternance, j'ai eu l'occasion de participer à la refonte du site du groupe Scub.",
+      img: "/images/site-scub.png",
+      url: "https://www.scub.net",
       isValid: false,
     },
     {
-      title: "Project 4",
-      description: "Project 4 description",
-      img: "https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      url: "https://www.google.com",
+      title: "Seeds",
+      description:
+        "Et pour finir un projet mobile, Seeds. Lors de ma dernière année d'alternance, j'ai eu l'opportunité de concevoir et réaliser une application mobile avec le framework Flutter et l'ecosystème Firebase.",
+      img: "/images/seeds.png",
+      url: "https://github.com/TontonduWebEcv/seeds-growing",
       isValid: false,
     },
   ]);
@@ -65,6 +69,7 @@ export default function ProjectList() {
             onMouseEnter={switchIsValid}
             onMouseLeave={switchIsValid}
             href={proj.url}
+            target="_blank"
             class="list">
             <h2>{proj.title}</h2>
             <p>{proj.description}</p>

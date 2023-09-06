@@ -131,49 +131,59 @@ export default function Timeline() {
         </div>
         <div class="layout-item">
           <div class="data-left">
-            <h2 class="data-text-left text-left-trigger">Hello</h2>
+            <h2 class="data-text-left text-left-trigger">Dévoué</h2>
           </div>
           <div class="data-center">
             <div class="circle timeline"></div>
           </div>
           <div class="data-right">
             <h2 class="data-text-right text-right-trigger">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reiciendis maxime tempora iusto repellendus blanditiis dolorum
-              esse! Ab necessitatibus magnam at blanditiis accusamus ea facere
-              ipsam architecto reprehenderit tempora! Ad, sequi.
+              La tache peut être pénible, mais je suis prêt à faire ce qu'il
+              faut pour mener à bien le projet.
             </h2>
           </div>
         </div>
         <div class="layout-item">
           <div class="data-left">
-            <h2 class="data-text-left text-left-trigger2">Hello</h2>
+            <h2 class="data-text-left text-left-trigger2">Curieux</h2>
           </div>
           <div class="data-center">
             <div class="circle timeline2"></div>
           </div>
           <div class="data-right">
             <h2 class="data-text-right text-right-trigger2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas
-              reprehenderit fugiat praesentium veritatis eveniet iste voluptatem
-              magni maiores. Culpa delectus iure quidem aliquam minus, dicta
-              molestias repellat hic? Autem, illo?
+              Toujours à recherche de nouvelles informations, de nouvelles
+              notions à aborder. Apprendre est dans ma nature et me renseigner
+              sur un sujet est un plaisir.
             </h2>
           </div>
         </div>
         <div class="layout-item">
           <div class="data-left">
-            <h2 class="data-text-left text-left-trigger3">Hello</h2>
+            <h2 class="data-text-left text-left-trigger3">Sociable</h2>
           </div>
           <div class="data-center">
             <div class="circle timeline3"></div>
           </div>
           <div class="data-right">
             <h2 class="data-text-right text-right-trigger3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              laboriosam repellat eius soluta reprehenderit odio, placeat itaque
-              natus. Nam minus vero odio possimus deleniti totam illum
-              necessitatibus sapiente culpa fuga.
+              Rencontrer de nouvelles personnes, échanger sur des sujets divers
+              et variés me permet de m'enrichir jour après jour.
+            </h2>
+          </div>
+        </div>
+        <div class="layout-item">
+          <div class="data-left">
+            <h2 class="data-text-left text-left-trigger3">Pédagogue</h2>
+          </div>
+          <div class="data-center">
+            <div class="circle timeline3"></div>
+          </div>
+          <div class="data-right">
+            <h2 class="data-text-right text-right-trigger3">
+              J'aime transmettre mes connaissances et aider les autres à
+              progresser. J'aime recevoir des conseils et des critiques
+              constructives pour m'améliorer.
             </h2>
           </div>
         </div>
