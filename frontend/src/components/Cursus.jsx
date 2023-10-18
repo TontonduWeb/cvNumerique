@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 
 const [error, setError] = createSignal(null);
 const [responseCursuses, setResponseCursuses] = createSignal([]);
+const [cursusSorted, setCursusSorted] = createSignal([]);
 
 export default function Cursuses() {
   onMount(() => {
@@ -34,20 +35,24 @@ export default function Cursuses() {
   const getData = async () => {
     await axios
       .get("http://localhost:1337/api/cursuses")
-      .then(({ data }) => setResponseCursuses(data.data))
+      .then(({ data }) => {
+        setResponseCursuses(data.data);
+        setCursusSorted(responseCursuses().sort((a, b) => b.id - a.id));
+      })
       .catch((err) => {
         setError(err);
       });
   };
 
   getData();
+
   return (
     <div class="main-cursus border-solid border-2 border-slate-500 m-20 grid grid-cols-2 justify-center">
       <div class="relative text-center flex flex-col">
         <h1 class="cursus sticky top-2">Cursus</h1>
       </div>
       <div class="grid grid-rows-4">
-        {responseCursuses().map((ligne) => {
+        {cursusSorted().map((ligne) => {
           const { ecole, description, periode, titre } = ligne.attributes;
           const html = marked(description);
           return (

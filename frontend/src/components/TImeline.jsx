@@ -120,6 +120,34 @@ export default function Timeline() {
       },
       color: "#f5f5f7",
     });
+    gsap.to(".timeline4", {
+      scrollTrigger: {
+        trigger: ".timeline4",
+        start: "top center",
+        end: () =>
+          "+=" + document.querySelector(".text-right-trigger4").offsetHeight,
+        scrub: true,
+      },
+      y: () =>
+        "+=" + document.querySelector(".text-right-trigger4").offsetHeight / 2,
+      backgroundColor: "#03ff40",
+    });
+    gsap.to(".text-left-trigger4", {
+      scrollTrigger: {
+        trigger: ".timeline4",
+        start: "top-=100px center",
+        scrub: true,
+      },
+      color: "#03ff40",
+    });
+    gsap.to(".text-right-trigger4", {
+      scrollTrigger: {
+        trigger: ".timeline4",
+        start: "top-=100px center",
+        scrub: true,
+      },
+      color: "#f5f5f7",
+    });
   });
   return (
     <>
@@ -174,13 +202,13 @@ export default function Timeline() {
         </div>
         <div class="layout-item">
           <div class="data-left">
-            <h2 class="data-text-left text-left-trigger3">Pédagogue</h2>
+            <h2 class="data-text-left text-left-trigger4">Pédagogue</h2>
           </div>
           <div class="data-center">
-            <div class="circle timeline3"></div>
+            <div class="circle timeline4"></div>
           </div>
           <div class="data-right">
-            <h2 class="data-text-right text-right-trigger3">
+            <h2 class="data-text-right text-right-trigger4">
               J'aime transmettre mes connaissances et aider les autres à
               progresser. J'aime recevoir des conseils et des critiques
               constructives pour m'améliorer.

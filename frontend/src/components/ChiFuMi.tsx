@@ -127,12 +127,11 @@ export default function ChiFuMi() {
   onMount(() => {
     setParties([]);
     setLevel(levels[0]);
-    console.log("getGame()", getGame());
+    console.log("onMount getGame()", getGame());
   });
 
   const partiesCount = () => {
     setPartiesPlayed(partiesPlayed() + 1);
-    console.log(partiesPlayed());
   };
 
   const winPartiesCount = () => {
@@ -311,22 +310,27 @@ export default function ChiFuMi() {
 
   const getInfos = () => {
     setInfo(true);
-    console.log(getInfo());
   };
 
   const getGameBool = () => {
     setGame(true);
-    console.log(getGame());
   };
 
   return (
     <>
       <div class="global">
         {!getGame() && !getInfo() && (
-          <div class="flex justify-center text-center w-full">
-            <button onclick={getGameBool}>
-              Joue avec moi pour accéder à mes infos
-            </button>
+          <div class="flex justify-center items-center w-full">
+            <form onSubmit={resetParties}>
+              <button
+                onClick={() => {
+                  setParties([]);
+                  setENdTheGame(false);
+                  getGameBool();
+                }}>
+                Joue avec moi pour accéder à mes infos
+              </button>
+            </form>
           </div>
         )}
 
@@ -334,14 +338,16 @@ export default function ChiFuMi() {
           <div class="flex justify-center text-center w-full">
             <div class="flex flex-col justify-center items-center w-full">
               <div class="flex justify-between w-full px-8">
-                <button
-                  onclick={() => {
-                    setInfo(false);
-                    setGame(false);
-                  }}
-                  class="w-auto p-1 border-2">
-                  Recommencer
-                </button>
+                <form onSubmit={resetParties}>
+                  <button
+                    onclick={() => {
+                      setGame(false);
+                      setInfo(false);
+                    }}
+                    class="w-auto p-1 border-2">
+                    Recommencer
+                  </button>
+                </form>
                 <a href="/">
                   <button class="w-auto p-1 border-2">Retrouver le site</button>
                 </a>
@@ -364,7 +370,8 @@ export default function ChiFuMi() {
                   <div class="flex flex-col items-center">
                     <a
                       href="https://github.com/TontonduWeb/cvNumerique"
-                      class="border-none border-b-0 border-b-black">
+                      class="border-none border-b-0 border-b-black"
+                      target="blank">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.1"
@@ -386,7 +393,9 @@ export default function ChiFuMi() {
                     </a>
                   </div>
                   <div class="flex flex-col items-center">
-                    <a href="https://www.linkedin.com/in/matthieu-dejean/">
+                    <a
+                      href="https://www.linkedin.com/in/matthieu-dejean/"
+                      target="blank">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.1"
