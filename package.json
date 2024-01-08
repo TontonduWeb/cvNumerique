@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "pg": "^8.11.3",
-    "pg-connection-string": "^2.6.2",
-    "yarn.lock": "^0.0.1-security"
-  }
-}

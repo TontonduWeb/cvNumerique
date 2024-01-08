@@ -1,152 +1,152 @@
-import { onMount } from "solid-js";
-import "../styles/timeline.css";
+import { onMount } from 'solid-js';
+// import "../styles/timeline.css";
 
 export default function Timeline() {
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
     // Progress Bar
-    gsap.to(".progress-bar", {
+    gsap.to('.progress-bar', {
       scrollTrigger: {
-        trigger: ".timeline",
-        start: "top-=100px center",
+        trigger: '.timeline',
+        start: 'top-=100px center',
         scrub: true,
       },
-      backgroundColor: "#03ff40",
+      backgroundColor: '#03ff40',
     });
     // Circle
-    gsap.to(".timeline", {
+    gsap.to('.timeline', {
       scrollTrigger: {
-        trigger: ".timeline",
-        start: "top-=100px center",
+        trigger: '.timeline',
+        start: 'top-=100px center',
         end: () =>
-          "+=" + document.querySelector(".text-right-trigger").offsetHeight,
+          '+=' + document.querySelector('.text-right-trigger').offsetHeight,
         scrub: true,
       },
-      backgroundColor: "#03ff40",
+      backgroundColor: '#03ff40',
     });
-    gsap.to(".timeline", {
+    gsap.to('.timeline', {
       scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
+        trigger: '.timeline',
+        start: 'top center',
         end: () =>
-          "+=" + document.querySelector(".text-right-trigger").offsetHeight,
+          '+=' + document.querySelector('.text-right-trigger').offsetHeight,
         scrub: true,
       },
       y: () =>
-        "+=" + document.querySelector(".text-right-trigger").offsetHeight / 2,
+        '+=' + document.querySelector('.text-right-trigger').offsetHeight / 2,
     });
     // Data Text Left
-    gsap.to(".text-left-trigger", {
+    gsap.to('.text-left-trigger', {
       scrollTrigger: {
-        trigger: ".timeline",
-        start: "top-=100px center",
+        trigger: '.timeline',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#03ff40",
+      color: '#03ff40',
     });
     // Data Text Right
-    gsap.to(".text-right-trigger", {
+    gsap.to('.text-right-trigger', {
       scrollTrigger: {
-        trigger: ".timeline",
-        start: "top-=100px center",
+        trigger: '.timeline',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#f5f5f7",
+      color: '#f5f5f7',
     });
 
     // Then
-    gsap.to(".timeline2", {
+    gsap.to('.timeline2', {
       scrollTrigger: {
-        trigger: ".timeline2",
-        start: "top center",
+        trigger: '.timeline2',
+        start: 'top center',
         end: () =>
-          "+=" + document.querySelector(".text-right-trigger2").offsetHeight,
+          '+=' + document.querySelector('.text-right-trigger2').offsetHeight,
         scrub: true,
       },
       y: () =>
-        "+=" + document.querySelector(".text-right-trigger2").offsetHeight / 2,
+        '+=' + document.querySelector('.text-right-trigger2').offsetHeight / 2,
     });
-    gsap.to(".timeline2", {
+    gsap.to('.timeline2', {
       scrollTrigger: {
-        trigger: ".timeline2",
-        start: "top-=100px center",
+        trigger: '.timeline2',
+        start: 'top-=100px center',
         end: () =>
-          "+=" + document.querySelector(".text-right-trigger2").offsetHeight,
+          '+=' + document.querySelector('.text-right-trigger2').offsetHeight,
         scrub: true,
       },
-      backgroundColor: "#03ff40",
+      backgroundColor: '#03ff40',
     });
-    gsap.to(".text-left-trigger2", {
+    gsap.to('.text-left-trigger2', {
       scrollTrigger: {
-        trigger: ".timeline2",
-        start: "top-=100px center",
+        trigger: '.timeline2',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#03ff40",
+      color: '#03ff40',
     });
-    gsap.to(".text-right-trigger2", {
+    gsap.to('.text-right-trigger2', {
       scrollTrigger: {
-        trigger: ".timeline2",
-        start: "top-=100px center",
+        trigger: '.timeline2',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#f5f5f7",
+      color: '#f5f5f7',
     });
-    gsap.to(".timeline3", {
+    gsap.to('.timeline3', {
       scrollTrigger: {
-        trigger: ".timeline3",
-        start: "top center",
+        trigger: '.timeline3',
+        start: 'top center',
         end: () =>
-          "+=" + document.querySelector(".text-right-trigger3").offsetHeight,
+          '+=' + document.querySelector('.text-right-trigger3').offsetHeight,
         scrub: true,
       },
       y: () =>
-        "+=" + document.querySelector(".text-right-trigger3").offsetHeight / 2,
-      backgroundColor: "#03ff40",
+        '+=' + document.querySelector('.text-right-trigger3').offsetHeight / 2,
+      backgroundColor: '#03ff40',
     });
-    gsap.to(".text-left-trigger3", {
+    gsap.to('.text-left-trigger3', {
       scrollTrigger: {
-        trigger: ".timeline3",
-        start: "top-=100px center",
+        trigger: '.timeline3',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#03ff40",
+      color: '#03ff40',
     });
-    gsap.to(".text-right-trigger3", {
+    gsap.to('.text-right-trigger3', {
       scrollTrigger: {
-        trigger: ".timeline3",
-        start: "top-=100px center",
+        trigger: '.timeline3',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#f5f5f7",
+      color: '#f5f5f7',
     });
-    gsap.to(".timeline4", {
+    gsap.to('.timeline4', {
       scrollTrigger: {
-        trigger: ".timeline4",
-        start: "top center",
+        trigger: '.timeline4',
+        start: 'top center',
         end: () =>
-          "+=" + document.querySelector(".text-right-trigger4").offsetHeight,
+          '+=' + document.querySelector('.text-right-trigger4').offsetHeight,
         scrub: true,
       },
       y: () =>
-        "+=" + document.querySelector(".text-right-trigger4").offsetHeight / 2,
-      backgroundColor: "#03ff40",
+        '+=' + document.querySelector('.text-right-trigger4').offsetHeight / 2,
+      backgroundColor: '#03ff40',
     });
-    gsap.to(".text-left-trigger4", {
+    gsap.to('.text-left-trigger4', {
       scrollTrigger: {
-        trigger: ".timeline4",
-        start: "top-=100px center",
+        trigger: '.timeline4',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#03ff40",
+      color: '#03ff40',
     });
-    gsap.to(".text-right-trigger4", {
+    gsap.to('.text-right-trigger4', {
       scrollTrigger: {
-        trigger: ".timeline4",
-        start: "top-=100px center",
+        trigger: '.timeline4',
+        start: 'top-=100px center',
         scrub: true,
       },
-      color: "#f5f5f7",
+      color: '#f5f5f7',
     });
   });
   return (
