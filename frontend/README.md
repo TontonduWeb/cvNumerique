@@ -1,4 +1,8 @@
-# Astro Starter Kit: Minimal
+# Let's start with Astrojs
+
+Version node v20.10.0
+
+## Astro Starter Kit: Minimal
 
 ```
 npm create astro@latest -- --template minimal

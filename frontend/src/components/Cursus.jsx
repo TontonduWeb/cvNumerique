@@ -2,8 +2,6 @@ import { createSignal, onMount } from 'solid-js';
 import axios from 'axios';
 import { marked } from 'marked';
 
-import { gsap } from 'gsap';
-
 const [error, setError] = createSignal(null);
 const [responseCursuses, setResponseCursuses] = createSignal([]);
 const [cursusSorted, setCursusSorted] = createSignal([]);
