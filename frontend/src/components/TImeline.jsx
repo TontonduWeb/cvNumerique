@@ -1,5 +1,5 @@
 import { onMount } from 'solid-js';
-// import "../styles/timeline.css";
+import '../styles/timeline.css';
 
 export default function Timeline() {
   onMount(() => {

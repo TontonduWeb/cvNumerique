@@ -1,7 +1,8 @@
-import { For, batch, createSignal, onMount } from "solid-js";
-import { createLocalStore, removeIndex } from "../providers/localStore";
-import "../styles/chifumi.css";
-import "@fontsource/vt323";
+import { For, batch, createSignal, onMount } from 'solid-js';
+import { createLocalStore, removeIndex } from '../providers/localStore';
+import '../styles/chifumi.css';
+// Je sais plus ce que c'est
+// import "@fontsource/vt323";
 
 type Partie = { playerChoice: string; computerChoice: string; result: string };
 type Level = {
@@ -13,10 +14,10 @@ type Level = {
 };
 
 export default function ChiFuMi() {
-  const [parties, setParties] = createLocalStore<Partie[]>("parties", []);
+  const [parties, setParties] = createLocalStore<Partie[]>('parties', []);
   const [level, setLevel] = createSignal<Level>({
     rank: 1,
-    level: "Facile",
+    level: 'Facile',
     pourcent: 40,
     winParties: 3,
     maxParties: 10,
@@ -24,9 +25,9 @@ export default function ChiFuMi() {
   const [coordinates, setCoordinates] = createSignal({ x: 0, y: 0 });
   const [randomChoice, setComputerChoice] = createSignal(0);
   const [pourcent, setPourcent] = createSignal(0);
-  const [chiFuMiComputerChoice, setChiFuMiComputerChoice] = createSignal("");
-  const [chiFuMiPlayerChoice, setChiFuMiPlayerChoice] = createSignal("");
-  const [result, setResult] = createSignal("");
+  const [chiFuMiComputerChoice, setChiFuMiComputerChoice] = createSignal('');
+  const [chiFuMiPlayerChoice, setChiFuMiPlayerChoice] = createSignal('');
+  const [result, setResult] = createSignal('');
   const [isEndTheGame, setENdTheGame] = createSignal(false);
   const [isWinTheGame, setWinTheGame] = createSignal(false);
   const [isLevelSelected, setIsLevelSelected] = createSignal(false);
@@ -40,94 +41,93 @@ export default function ChiFuMi() {
   const [getInfo, setInfo] = createSignal(false);
   const [getGame, setGame] = createSignal(false);
 
-  const chiFuMiValues = ["👊", "✋", "✌️"];
+  const chiFuMiValues = ['👊', '✋', '✌️'];
 
   const chiFuMiRule = [
-    { value: "👊", rule: "La pierre bat les ciseaux" },
-    { value: "✋", rule: "La feuille bat la pierre" },
-    { value: "✌️", rule: "Les ciseaux battent la feuille" },
+    { value: '👊', rule: 'La pierre bat les ciseaux' },
+    { value: '✋', rule: 'La feuille bat la pierre' },
+    { value: '✌️', rule: 'Les ciseaux battent la feuille' },
   ];
 
-  const [chiFuMiRuleSelected, setChiFuMiRuleSelected] = createSignal("");
+  const [chiFuMiRuleSelected, setChiFuMiRuleSelected] = createSignal('');
   const [levelRule, setLevelRule] = createSignal({
     rank: 1,
-    level: "Facile",
-    rule: "40% de parties gagnées",
+    level: 'Facile',
+    rule: '40% de parties gagnées',
     minWin: 3,
     maxParties: 10,
     congratulation:
-      "Bravo tu as gagné le niveau 1, tu as clairement le niveau !",
-    suggestion: "Essaye le niveau moyen",
+      'Bravo tu as gagné le niveau 1, tu as clairement le niveau !',
+    suggestion: 'Essaye le niveau moyen',
   });
 
   const levels = [
-    { rank: 1, level: "Facile", pourcent: 40, winParties: 3, maxParties: 10 },
-    { rank: 2, level: "Moyen", pourcent: 50, winParties: 4, maxParties: 10 },
+    { rank: 1, level: 'Facile', pourcent: 40, winParties: 3, maxParties: 10 },
+    { rank: 2, level: 'Moyen', pourcent: 50, winParties: 4, maxParties: 10 },
     {
       rank: 3,
-      level: "Difficile",
+      level: 'Difficile',
       pourcent: 60,
       winParties: 5,
       maxParties: 8,
     },
-    { rank: 4, level: "Expert", pourcent: 70, winParties: 4, maxParties: 8 },
-    { rank: 5, level: "Maitre", pourcent: 80, winParties: 5, maxParties: 6 },
+    { rank: 4, level: 'Expert', pourcent: 70, winParties: 4, maxParties: 8 },
+    { rank: 5, level: 'Maitre', pourcent: 80, winParties: 5, maxParties: 6 },
   ];
 
   const levelRules = [
     {
       rank: 1,
-      level: "Facile",
-      rule: "40% de parties gagnées",
+      level: 'Facile',
+      rule: '40% de parties gagnées',
       minWin: 3,
       maxParties: 10,
       congratulation:
-        "Bravo tu as gagné le niveau 1, tu as clairement le niveau !",
-      suggestion: "Essaye le niveau moyen",
+        'Bravo tu as gagné le niveau 1, tu as clairement le niveau !',
+      suggestion: 'Essaye le niveau moyen',
     },
     {
       rank: 2,
-      level: "Moyen",
-      rule: "50% de parties gagnées",
+      level: 'Moyen',
+      rule: '50% de parties gagnées',
       minWin: 4,
       maxParties: 10,
       congratulation:
-        "Bravo tu as gagné le niveau 2, les choses sérieuses commencent !",
-      suggestion: "Essaye le niveau difficile",
+        'Bravo tu as gagné le niveau 2, les choses sérieuses commencent !',
+      suggestion: 'Essaye le niveau difficile',
     },
     {
       rank: 3,
-      level: "Difficile",
-      rule: "60% de parties gagnées",
+      level: 'Difficile',
+      rule: '60% de parties gagnées',
       minWin: 5,
       maxParties: 8,
-      congratulation: "Bravo tu as gagné le niveau 3, tu assure vraiment !",
-      suggestion: "Seras tu un expert ?",
+      congratulation: 'Bravo tu as gagné le niveau 3, tu assure vraiment !',
+      suggestion: 'Seras tu un expert ?',
     },
     {
       rank: 4,
-      level: "Expert",
-      rule: "70% de parties gagnées",
+      level: 'Expert',
+      rule: '70% de parties gagnées',
       minWin: 4,
       maxParties: 8,
-      congratulation: "Bravo tu as gagné le niveau 4, tu es un expert !",
-      suggestion: "Essaye le niveau maitre",
+      congratulation: 'Bravo tu as gagné le niveau 4, tu es un expert !',
+      suggestion: 'Essaye le niveau maitre',
     },
     {
       rank: 5,
-      level: "Maitre",
-      rule: "80% de parties gagnées",
+      level: 'Maitre',
+      rule: '80% de parties gagnées',
       minWin: 5,
       maxParties: 6,
-      congratulation: "Bravo tu as gagné le niveau 5, tu es un maitre !",
-      suggestion: "Tu as gagné le jeu, bravo ! Enregistre ton score",
+      congratulation: 'Bravo tu as gagné le niveau 5, tu es un maitre !',
+      suggestion: 'Tu as gagné le jeu, bravo ! Enregistre ton score',
     },
   ];
 
   onMount(() => {
     setParties([]);
     setLevel(levels[0]);
-    console.log("onMount getGame()", getGame());
   });
 
   const partiesCount = () => {
@@ -195,15 +195,15 @@ export default function ChiFuMi() {
 
   const valueToLevelNumber = (value: string) => {
     switch (value) {
-      case "Facile":
+      case 'Facile':
         return 0;
-      case "Moyen":
+      case 'Moyen':
         return 1;
-      case "Difficile":
+      case 'Difficile':
         return 2;
-      case "Expert":
+      case 'Expert':
         return 3;
-      case "Maitre":
+      case 'Maitre':
         return 4;
       default:
         return 0;
@@ -223,7 +223,7 @@ export default function ChiFuMi() {
       // Set a new player choice in the state
       setParties([]);
       setENdTheGame(false);
-      setChiFuMiPlayerChoice("");
+      setChiFuMiPlayerChoice('');
       setWinTheGame(false);
     });
   };
@@ -231,41 +231,41 @@ export default function ChiFuMi() {
   const random = (min: number, max: number) => {
     setComputerChoice(Math.floor(Math.random() * (max - min + 1)) + min);
     if (randomChoice() === 1) {
-      setChiFuMiComputerChoice("👊");
+      setChiFuMiComputerChoice('👊');
     } else if (randomChoice() === 2) {
-      setChiFuMiComputerChoice("✋");
+      setChiFuMiComputerChoice('✋');
     } else if (randomChoice() === 3) {
-      setChiFuMiComputerChoice("✌️");
+      setChiFuMiComputerChoice('✌️');
     }
     return chiFuMiComputerChoice;
   };
 
   const getResult = () => {
-    if (chiFuMiPlayerChoice() === "👊") {
-      if (chiFuMiComputerChoice() === "👊") {
-        setResult("Egalité");
-      } else if (chiFuMiComputerChoice() === "✋") {
-        setResult("Tu as perdu");
-      } else if (chiFuMiComputerChoice() === "✌️") {
-        setResult("Tu as gagné");
+    if (chiFuMiPlayerChoice() === '👊') {
+      if (chiFuMiComputerChoice() === '👊') {
+        setResult('Egalité');
+      } else if (chiFuMiComputerChoice() === '✋') {
+        setResult('Tu as perdu');
+      } else if (chiFuMiComputerChoice() === '✌️') {
+        setResult('Tu as gagné');
       }
     }
-    if (chiFuMiPlayerChoice() === "✋") {
-      if (chiFuMiComputerChoice() === "👊") {
-        setResult("Tu as gagné");
-      } else if (chiFuMiComputerChoice() === "✋") {
-        setResult("Egalité");
-      } else if (chiFuMiComputerChoice() === "✌️") {
-        setResult("Tu as perdu");
+    if (chiFuMiPlayerChoice() === '✋') {
+      if (chiFuMiComputerChoice() === '👊') {
+        setResult('Tu as gagné');
+      } else if (chiFuMiComputerChoice() === '✋') {
+        setResult('Egalité');
+      } else if (chiFuMiComputerChoice() === '✌️') {
+        setResult('Tu as perdu');
       }
     }
-    if (chiFuMiPlayerChoice() === "✌️") {
-      if (chiFuMiComputerChoice() === "👊") {
-        setResult("Tu as perdu");
-      } else if (chiFuMiComputerChoice() === "✋") {
-        setResult("Tu as gagné");
-      } else if (chiFuMiComputerChoice() === "✌️") {
-        setResult("Egalité");
+    if (chiFuMiPlayerChoice() === '✌️') {
+      if (chiFuMiComputerChoice() === '👊') {
+        setResult('Tu as perdu');
+      } else if (chiFuMiComputerChoice() === '✋') {
+        setResult('Tu as gagné');
+      } else if (chiFuMiComputerChoice() === '✌️') {
+        setResult('Egalité');
       }
     }
   };
@@ -275,7 +275,7 @@ export default function ChiFuMi() {
     let pourcentWin = 0;
 
     for (let i = 0; i < parties.length; i++) {
-      if (parties[i].result === "Tu as gagné") {
+      if (parties[i].result === 'Tu as gagné') {
         win++;
       }
     }
@@ -295,7 +295,7 @@ export default function ChiFuMi() {
   const winTheGame = (parties: Partie[]) => {
     let gamesWon = 0;
     for (let i = 0; i < parties.length; i++) {
-      if (parties[i].result === "Tu as gagné") {
+      if (parties[i].result === 'Tu as gagné') {
         gamesWon++;
       }
     }
@@ -321,14 +321,18 @@ export default function ChiFuMi() {
       <div class="global">
         {!getGame() && !getInfo() && (
           <div class="flex justify-center items-center w-full">
-            <form onSubmit={resetParties}>
+            <form
+              class="flex flex-col justify-center items-center"
+              onSubmit={resetParties}>
+              <p class="p-2 text-2xl">Joue avec moi pour accéder à mes infos</p>
               <button
+                class="w-auto p-1 border-2"
                 onClick={() => {
                   setParties([]);
                   setENdTheGame(false);
                   getGameBool();
                 }}>
-                Joue avec moi pour accéder à mes infos
+                Let's play Chifumi !
               </button>
             </form>
           </div>
@@ -352,7 +356,7 @@ export default function ChiFuMi() {
                   <button class="w-auto p-1 border-2">Retrouver le site</button>
                 </a>
               </div>
-              <h2 class="mt-32">Infos</h2>
+              <h2 class="mt-32">Infos :</h2>
               <p>Je suis un jeu de pierre, feuille, ciseaux</p>
               <p>
                 J'ai été réalisé avec le framework Solid.js et le langage
@@ -360,7 +364,8 @@ export default function ChiFuMi() {
               </p>
               <p>
                 Je suis hébergé sur Netlify, et j'utilise le service de
-                localstorage de votre navigateur pour stocker les données
+                localstorage de votre navigateur pour stocker les données de
+                cette partie de Chifumi
               </p>
               <div class="w-full mt-32">
                 <p class="text-bold text-lg text-primary_color">
@@ -427,28 +432,30 @@ export default function ChiFuMi() {
             <div class="z-10 absolute bottom left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               {isEndTheGame() && isWinTheGame() ? (
                 <>
-                  <h2>Tu as gagné le game</h2>
-                  {winParties() === 1 || partiesPlayed() > 3 ? (
-                    <button onclick={getInfos}>
-                      <a>Accède à mes infos</a>
-                    </button>
-                  ) : (
-                    ""
-                  )}
+                  <div class="flex flex-col justify-content items-center">
+                    <h2>Tu as gagné le game</h2>
+                    {winParties() === 1 || partiesPlayed() > 3 ? (
+                      <button class="w-auto p-1 border-2" onclick={getInfos}>
+                        <a>Accède à mes infos</a>
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </>
               ) : isEndTheGame() && !isWinTheGame() ? (
                 <>
                   <h2>Tu as perdu le game</h2>
                   {winParties() === 1 || partiesPlayed() > 3 ? (
-                    <button onclick={getInfos}>
+                    <button class="w-auto p-1 border-2" onclick={getInfos}>
                       <a>Accède à mes infos</a>
                     </button>
                   ) : (
-                    ""
+                    ''
                   )}
                 </>
               ) : (
-                ""
+                ''
               )}
             </div>
             <div
@@ -505,13 +512,13 @@ export default function ChiFuMi() {
                           {levelRule().level}
                         </span>
                       </p>
-                      {isDisplayRule() && chiFuMiPlayerChoice() !== "" ? (
+                      {isDisplayRule() && chiFuMiPlayerChoice() !== '' ? (
                         <div
                           style={{
                             left: 0,
                             top: 0,
-                            position: "absolute",
-                            transition: "transform 1s ease",
+                            position: 'absolute',
+                            transition: 'transform 1s ease',
                             transform: `translate(${coordinates().x + 400}px, ${
                               coordinates().y - 75
                             }px)`,
@@ -532,7 +539,7 @@ export default function ChiFuMi() {
                           </p>
                         </div>
                       ) : (
-                        ""
+                        ''
                       )}
 
                       <h4>Choisis entre pierre, feuille ou ciseaux :</h4>
@@ -548,7 +555,7 @@ export default function ChiFuMi() {
                               }}
                               onMouseLeave={() => {
                                 switchIsDisplayChoice();
-                                setChiFuMiRuleSelected("");
+                                setChiFuMiRuleSelected('');
                               }}
                               onMouseMove={handleMouseMove}
                               onClick={() => {
@@ -583,7 +590,7 @@ export default function ChiFuMi() {
                           onMouseMove={handleMouseMove}>
                           {isDisplay()
                             ? "☝️ Je veux bien de l'aide"
-                            : "Je sais qui est le meilleur"}
+                            : 'Je sais qui est le meilleur'}
                         </button>
                         {isDisplayMessage() && !isDisplay() ? (
                           <div>
@@ -591,8 +598,8 @@ export default function ChiFuMi() {
                               style={{
                                 left: 0,
                                 top: 0,
-                                position: "absolute",
-                                transition: "transform 1s ease",
+                                position: 'absolute',
+                                transition: 'transform 1s ease',
                                 transform: `translate(${
                                   coordinates().x - 100
                                 }px, ${coordinates().y - 200}px)`,
@@ -601,7 +608,7 @@ export default function ChiFuMi() {
                             </p>
                           </div>
                         ) : (
-                          ""
+                          ''
                         )}
                         {isDisplayMessage() && isDisplay() ? (
                           <div>
@@ -609,8 +616,8 @@ export default function ChiFuMi() {
                               style={{
                                 left: 0,
                                 top: 0,
-                                position: "absolute",
-                                transition: "transform 1s ease",
+                                position: 'absolute',
+                                transition: 'transform 1s ease',
                                 transform: `translate(${
                                   coordinates().x - 100
                                 }px, ${coordinates().y - 200}px)`,
@@ -619,7 +626,7 @@ export default function ChiFuMi() {
                             </p>
                           </div>
                         ) : (
-                          ""
+                          ''
                         )}
                       </div>
                     </div>
@@ -630,8 +637,8 @@ export default function ChiFuMi() {
                           style={{
                             left: 0,
                             top: 0,
-                            position: "absolute",
-                            transition: "transform 1s ease",
+                            position: 'absolute',
+                            transition: 'transform 1s ease',
                             transform: `translate(${coordinates().x - 100}px, ${
                               coordinates().y - 200
                             }px)`,
@@ -640,7 +647,7 @@ export default function ChiFuMi() {
                         </p>
                       </div>
                     ) : (
-                      ""
+                      ''
                     )}
                   </>
                 ) : (
@@ -650,14 +657,14 @@ export default function ChiFuMi() {
                     <h3>Parties maximum atteintes ...</h3>
                     <p>
                       Atteins les {level().pourcent}% de parties gagnées, avec
-                      minimum {level().winParties} parties gagnées en{" "}
+                      minimum {level().winParties} parties gagnées en{' '}
                       {level().maxParties} parties maximum
                     </p>
                   </div>
                 )}
               </div>
               <div class="live-result">
-                {chiFuMiPlayerChoice() !== "" && (
+                {chiFuMiPlayerChoice() !== '' && (
                   <div class="result-partie">
                     <div class="playerAndComputChoices">
                       <div>
@@ -678,9 +685,9 @@ export default function ChiFuMi() {
                       <h3>
                         <span
                           classList={{
-                            win: result() === "Tu as gagné",
-                            lost: result() === "Tu as perdu",
-                            equal: result() === "Egalité",
+                            win: result() === 'Tu as gagné',
+                            lost: result() === 'Tu as perdu',
+                            equal: result() === 'Egalité',
                           }}>
                           {result()}
                         </span>
@@ -725,9 +732,9 @@ export default function ChiFuMi() {
                               <span
                                 class="grow"
                                 classList={{
-                                  win: partie.result === "Tu as gagné",
-                                  lost: partie.result === "Tu as perdu",
-                                  equal: partie.result === "Egalité",
+                                  win: partie.result === 'Tu as gagné',
+                                  lost: partie.result === 'Tu as perdu',
+                                  equal: partie.result === 'Egalité',
                                 }}>
                                 {partie.result}
                               </span>
@@ -776,7 +783,7 @@ export default function ChiFuMi() {
               ) : (
                 <div class="rules">
                   <h3 class="text-3xl">
-                    Commence une partie du niveau{" "}
+                    Commence une partie du niveau{' '}
                     <span class="text-primary_color">{levelRule().level}</span>
                   </h3>
                   <h4 class="text-5xl">
@@ -784,15 +791,15 @@ export default function ChiFuMi() {
                     <span class="text-primary_color">{levelRule().rule}</span>
                   </h4>
                   <p>
-                    Minimum : En{" "}
-                    <span class="text-primary_color">{levelRule().minWin}</span>{" "}
+                    Minimum : En{' '}
+                    <span class="text-primary_color">{levelRule().minWin}</span>{' '}
                     parties gagnées
                   </p>
                   <p>
-                    Maximum : En{" "}
+                    Maximum : En{' '}
                     <span class="text-primary_color">
                       {levelRule().maxParties}
-                    </span>{" "}
+                    </span>{' '}
                     parties jouées
                   </p>
                 </div>

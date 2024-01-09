@@ -1,8 +1,8 @@
-import { createSignal, onMount } from "solid-js";
-import axios from "axios";
-import { marked } from "marked";
+import { createSignal, onMount } from 'solid-js';
+import axios from 'axios';
+import { marked } from 'marked';
 
-import { gsap } from "gsap";
+import { gsap } from 'gsap';
 
 const [error, setError] = createSignal(null);
 const [responseCursuses, setResponseCursuses] = createSignal([]);
@@ -12,32 +12,32 @@ export default function Cursuses() {
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
     // Effet d'entrée
-    gsap.from(".main-cursus", {
+    gsap.from('.main-cursus', {
       scrollTrigger: {
-        trigger: ".main-cursus",
-        start: "top 80%",
+        trigger: '.main-cursus',
+        start: 'top 80%',
       },
       duration: 1,
       opacity: 0,
       y: 50,
       stagger: 0.2,
     });
-    gsap.to(".cursus", {
+    gsap.to('.cursus', {
       scrollTrigger: {
-        trigger: ".main-cursus",
-        start: "center center",
+        trigger: '.main-cursus',
+        start: 'top center',
         scrub: true,
       },
-      color: "#03ff40",
+      color: '#03ff40',
     });
   });
 
   const getData = async () => {
     await axios
-      .get("http://localhost:1337/api/cursuses")
+      .get('http://localhost:1337/api/cursuses')
       .then(({ data }) => {
         setResponseCursuses(data.data);
-        setCursusSorted(responseCursuses().sort((a, b) => b.id - a.id));
+        setCursusSorted(responseCursuses().sort((a, b) => a.id - b.id));
       })
       .catch((err) => {
         setError(err);
@@ -47,7 +47,7 @@ export default function Cursuses() {
   getData();
 
   return (
-    <div class="main-cursus border-solid border-2 border-slate-500 m-20 grid grid-cols-2 justify-center">
+    <div class="main-cursus m-20 grid grid-cols-2 justify-center">
       <div class="relative text-center flex flex-col">
         <h1 class="cursus sticky top-2">Cursus</h1>
       </div>
@@ -56,7 +56,7 @@ export default function Cursuses() {
           const { ecole, description, periode, titre } = ligne.attributes;
           const html = marked(description);
           return (
-            <div class="p-4 border-l-2 border-b-2 border-slate-500 h-full flex flex-col justify-center">
+            <div class="p-4 h-full flex flex-col justify-center">
               <div class="flex justify-between pb-4">
                 <p class="text-sm">{periode}</p>
                 <p>{ecole}</p>

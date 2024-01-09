@@ -1,34 +1,13 @@
 module.exports = ({ env }) => ({
-  //...
-  "import-export-entries": {
+  "vercel-deploy": {
     enabled: true,
     config: {
-      // See `Config` section.
-    },
-  },
-  //...
-  upload: {
-    config: {
-      provider: "aws-s3",
-      providerOptions: {
-        s3Options: {
-          accessKeyId: env("AWS_ACCESS_KEY_ID"),
-          secretAccessKey: env("AWS_ACCESS_SECRET"),
-          region: env("AWS_REGION"),
-          params: {
-            Bucket: env("AWS_BUCKET_NAME"),
-          },
-        },
-      },
-      // These parameters could solve issues with ACL public-read access — see [this issue](https://github.com/strapi/strapi/issues/5868) for details
-      actionOptions: {
-        upload: {
-          ACL: null,
-        },
-        uploadStream: {
-          ACL: null,
-        },
-      },
+      deployHook:
+        "https://api.vercel.com/v1/integrations/deploy/prj_<deploy-hook>",
+      apiToken: "<vercel-api-token>",
+      appFilter: "your-app-name-on-vercel",
+      teamFilter: "your-team-id-on-vercel",
+      roles: ["strapi-super-admin", "strapi-editor", "strapi-author"],
     },
   },
 });
